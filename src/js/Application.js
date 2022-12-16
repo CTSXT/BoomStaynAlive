@@ -11,7 +11,7 @@ export default class Application extends EventEmitter {
   constructor() {
     super();
     this._beat=new Beat();
-    this._beat.event.on('bit', this._create);
+    this._beat.addListener(this._create());
     this._create=()=>{
     const message = document.createElement("div");
     message.classList.add("message");
