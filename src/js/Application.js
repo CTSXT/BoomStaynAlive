@@ -7,11 +7,11 @@ export default class Application extends EventEmitter {
       READY: "ready",
     };
   }
-
+let count = 0;
   constructor() {
     super();
     this._beat=new Beat();
-    this._beat.addListener(this._create());
+    this._beat.on(Beat.events.BIT,this._create());
     this._create=()=>{
     const message = document.createElement("div");
     message.classList.add("message");
@@ -20,7 +20,6 @@ export default class Application extends EventEmitter {
     document.querySelector(".main").appendChild(message);
     };
     const lyrics = ["Ah", "ha", "ha", "ha", "stayin' alive", "stayin' alive"];
-    let count = 0;
 
     this.emit(Application.events.READY);
   }
